@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load shuffle %}
+
+{% block header_title %}Quiz | {{ block.super }}{% endblock %}
+
+{% block content_header %}
+    <div class="jumbotron">
+        <h2>{{ object.name }} Quiz</h2>
+    </div>
+{% endblock %}
+
+{% block main_content %}
+    <div class="row">
+        <form action="#" method="post">
+            <ol>
+                {% for question in object.questions.all|shuffle %}
+                        <li>
+                            <label for="question-{{ question.id }}">{{ question }}</label>
+                        </li>
+                        {# label_id = "question-{{ forloop.counter }}"#}
+                        {% for answer in  question.answers.all|shuffle %}
+                            <input type="radio" id="question-{{ question.id }}" name="answer" value="{{ answer.question_answer }}">{{ answer.question_answer }}<br>
+                        {% endfor %}
+                        <br>
+                {% endfor %}
+            </ol>
+            <input type="submit" class="btn btn-success" value="Submit Quiz">
+        </form>
+
+    </div>
+{% endblock %}

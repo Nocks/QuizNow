@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block header_title %}Welcome | {{ block.super }}{% endblock %}
+
+{% block content_header %}
+    <div class="jumbotron">
+        <h1>Welcome to QuizNow.</h1>
+        <p><em>Your home of quizes.</em></p>
+    </div>
+{% endblock %}
+
+{% block main_content %}
+    <div class="row">
+        <div class="col-md-offset-3"></div>
+        <div class="col-md-6">
+            {% if exams %}
+                <p>Kindly select the exam you're sitting for to access your quiz.</p>
+            {% else %}
+                <p>There are no exams available yet.</p>
+            {% endif %}
+
+            {% for exam in exams %}
+                <a href="{{ exam.get_absolute_url }}">{{ exam.name }}</a><br>
+            {% endfor %}
+            <br>
+        </div>
+        <div class="col-md-offset-3"></div>
+    </div>
+{% endblock %}
