@@ -20,7 +20,7 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            <a href="{{ exam.get_absolute_url }}" class="btn btn-info" role="button">Go to Quiz</a>
+            <a href="{% url 'quiz:take_quiz' slug=object.slug %}" class="btn btn-info" role="button">Go to Quiz</a>
         </div>
     </div>
 {% endblock %}
